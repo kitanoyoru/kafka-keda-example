@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  consumer:
+    image: ${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}
+    environment:
+      SCHEMA_PATHS: ${SCHEMA_PATHS}
+      BOOTSTRAP_SERVERS: ${BOOTSTRAP_SERVERS}
+      TOPIC: ${TOPIC}
+      CONSUMER_GROUP_ID: ${CONSUMER_GROUP_ID}
+    command:
+      - kafka-app
+      - consumer 
+      
+  producer:
+    image: ${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}
+    environment:
+      SCHEMA_PATHS: ${SCHEMA_PATHS}
+      BOOTSTRAP_SERVERS: ${BOOTSTRAP_SERVERS}
+      TOPIC: ${TOPIC}
+    command:
+      - kafka-app
+      - producer
+    depends_on:
+      - consumer 
