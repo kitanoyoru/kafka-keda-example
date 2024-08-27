@@ -1,5 +1,5 @@
 {
-  "namespace": "kita.golang.example",
+  "namespace": "kita.kafka_keda.example",
   "type": "record",
   "name": "User",
   "fields": [
