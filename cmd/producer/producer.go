@@ -4,10 +4,11 @@ import (
 	"log/slog"
 	"time"
 
-	"avro/pkg/cmdutils"
-	"avro/pkg/config"
-	"avro/pkg/gen/go/user"
-	"avro/pkg/types"
+	"github.com/kitanoyoru/kafka-keda-example/pkg/cmdutils"
+	"github.com/kitanoyoru/kafka-keda-example/pkg/config"
+	"github.com/kitanoyoru/kafka-keda-example/pkg/gen/go/user"
+	"github.com/kitanoyoru/kafka-keda-example/pkg/types"
+
 	"github.com/brianvoe/gofakeit/v7"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/google/uuid"

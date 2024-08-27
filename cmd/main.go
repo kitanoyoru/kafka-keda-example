@@ -3,8 +3,9 @@ package main
 import (
 	"log"
 
-	"avro/cmd/consumer"
-	"avro/cmd/producer"
+	"github.com/kitanoyoru/kafka-keda-example/cmd/consumer"
+	"github.com/kitanoyoru/kafka-keda-example/cmd/producer"
+
 	"github.com/spf13/cobra"
 )
 

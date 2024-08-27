@@ -1,4 +1,4 @@
-module avro
+module github.com/kitanoyoru/kafka-keda-example
 
 go 1.23
 

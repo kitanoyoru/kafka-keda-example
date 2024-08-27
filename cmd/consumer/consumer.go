@@ -3,9 +3,10 @@ package consumer
 import (
 	"log/slog"
 
-	"avro/pkg/cmdutils"
-	"avro/pkg/config"
-	"avro/pkg/gen/go/user"
+	"github.com/kitanoyoru/kafka-keda-example/pkg/cmdutils"
+	"github.com/kitanoyoru/kafka-keda-example/pkg/config"
+	"github.com/kitanoyoru/kafka-keda-example/pkg/gen/go/user"
+
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/hamba/avro"
 	"github.com/pkg/errors"
