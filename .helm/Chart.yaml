@@ -1,0 +1,9 @@
+apiVersion: v2
+name: kafka-app
+description: An example of how to use Kafka and scale it using KEDA
+
+type: application
+
+version: 0.1.0
+
+appVersion: "0.1.0"

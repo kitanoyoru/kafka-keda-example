@@ -1,0 +1,48 @@
+consumer:
+  replicaCount: 1
+
+  image:
+    repository: kitanoyoru/kafka-keda-example
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  env:
+    bootstrapServers: "kafka:29092"
+    topic: "kita.user"
+    consumerGroupId: "user-consumer-group"
+    schemaPaths: "/usr/local/lib/schema/avro/user.avsc"
+
+  service:
+    enabled: true
+    name: kafka-consumer
+    type: ClusterIP
+    port: 80
+    targetPort: 80
+
+  serviceAccount:
+    create: true
+    name: ""
+
+producer:
+  replicaCount: 1
+
+  image:
+    repository: kitanoyoru/kafka-keda-example
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  env:
+    bootstrapServers: "kafka:29092"
+    topic: "kita.user"
+    schemaPaths: "/usr/local/lib/schema/avro/user.avsc"
+
+  service:
+    enabled: true
+    name: kafka-consumer
+    type: ClusterIP
+    port: 80
+    targetPort: 80
+
+  serviceAccount:
+    create: true
+    name: ""

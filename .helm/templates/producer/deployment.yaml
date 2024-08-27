@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kafka-app.fullname" . }}
+  labels:
+    app: {{ include "kafka-app.name" . }}
+spec:
+  replicas: {{ .Values.producer.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "kafka-app.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "kafka-app.name" . }}
+    spec:
+      containers:
+        - name: kafka-producer
+          image: "{{ .Values.producer.image.repository }}:{{ .Values.producer.image.tag }}"
+          imagePullPolicy: {{ .Values.producer.image.pullPolicy }}
+          env:
+            - name: BOOTSTRAP_SERVERS
+              value: {{ .Values.producer.env.bootstrapServers }}
+            - name: TOPIC
+              value: {{ .Values.producer.env.topic }}
+            - name: SCHEMA_PATHS
+              value: {{ .Values.producer.schemaPaths }}
+          command:
+            - kafka-app 
+          args:
+            - producer 
+

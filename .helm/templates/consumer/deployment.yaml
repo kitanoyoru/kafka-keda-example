@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kafka-app.fullname" . }}
+  labels:
+    app: {{ include "kafka-app.name" . }}
+spec:
+  replicas: {{ .Values.consumer.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "kafka-app.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "kafka-app.name" . }}
+    spec:
+      containers:
+        - name: kafka-consumer
+          image: "{{ .Values.consumer.image.repository }}:{{ .Values.consumer.image.tag }}"
+          imagePullPolicy: {{ .Values.consumer.image.pullPolicy }}
+          env:
+            - name: BOOTSTRAP_SERVERS
+              value: {{ .Values.env.bootstrapServers }}
+            - name: TOPIC
+              value: {{ .Values.env.topic }}
+            - name: CONSUMER_GROUP_ID
+              value: {{ .Values.env.consumerGroupId }}
+            - name: SCHEMA_PATHS
+              value: {{ .Values.env.schemaPaths }}
+          command:
+            - kafka-app 
+          args:
+            - consumer 
+
